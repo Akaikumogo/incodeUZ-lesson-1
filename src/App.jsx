@@ -13,6 +13,11 @@ export default function App() {
   const [shoppingList, setShoppingList] = useState(initialShoppingList);
 
   const add = () => {
+    const exists = shoppingList.some((item) => item.inputVal === inputVal);
+    if (exists) {
+      alert("This item already exists in the list");
+      return;
+    }
     const newItem = { id: lastId + 1, inputVal, selectVal, isActive };
     const updatedList = [...shoppingList, newItem];
     setShoppingList(updatedList);
