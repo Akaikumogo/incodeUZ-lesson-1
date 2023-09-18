@@ -1,41 +1,16 @@
 // eslint-disable-next-line react/prop-types
-export default function Card({ setIsActive }) {
-  const list = JSON.parse(localStorage.getItem("List"));
-  const rang = {
-    zarur: "bg-red-200",
-    kerak: "bg-green-200",
-  };
-
-  const done = (id) => {
-    const updatedList = list.map((item) => {
-      if (item.id === id) {
-        setIsActive(!item.isActive);
-        return { ...item, isActive: !item.isActive };
-      }
-      return item;
-    });
-
-    localStorage.setItem("List", JSON.stringify(updatedList));
-  };
-
+const Card = ({ item }) => {
+  console.log(item);
+  // eslint-disable-next-line react/prop-types
+  const { title, description, price, image } = item;
   return (
-    <>
-      {list.map((item) => (
-        <div
-          className={
-            "m-5 w-100 p-[5px] rounded-md flex justify-between" +
-            " " +
-            rang[item.selectVal]
-          }
-          key={item.id}
-        >
-          <h1>{item.inputVal}</h1>
-
-          <button onClick={() => done(item.id)}>
-            {!item.isActive ? "✅" : " olinmadi"}
-          </button>
-        </div>
-      ))}
-    </>
+    <div className=" w-[350px] h-[500px] border-2 border-black p-5 shadow-2xl  rounded-lg m-6">
+      <img className="w-[200px] h-[200px]" src={image} alt="" />
+      <p>{title}</p>
+      <p>{description}</p>
+      <p>{price}</p>
+    </div>
   );
-}
+};
+
+export default Card;
