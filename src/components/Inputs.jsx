@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import { ProductsContext } from "../context/productsContext";
 
 const Inputs = () => {
-  const { keyword, setKeyword, color, setColor } = useContext(ProductsContext);
+  const { keyword, setKeyword } = useContext(ProductsContext);
   const inp1 = useRef();
   const inp2 = useRef();
   const inp3 = useRef();
@@ -19,7 +19,13 @@ const Inputs = () => {
         }
         maxLength={1}
         pattern="[0-9]"
-        className={`w-[35px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:${color} focus:border-blue-500 block p-2.5`}
+        className={`w-[35px] bg-gray-50 border border-${
+          keyword === "1234"
+            ? "green-200"
+            : keyword.length === 4 && !"1234"
+            ? "red-700"
+            : "grey-500"
+        } text-gray-900 text-sm rounded-lg  focus:border-blue-500 block p-2.5`}
         type="text"
       />
       <input
@@ -31,7 +37,13 @@ const Inputs = () => {
             : inp1.current.focus()
         }
         pattern="[0-9]"
-        className={`w-[35px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:${color} focus:border-blue-500 block p-2.5`}
+        className={`w-[35px] bg-gray-50 border border-${
+          keyword === "1234"
+            ? "green-200"
+            : keyword.length === 4 && !"1234"
+            ? "bg-red-700"
+            : "grey-500"
+        } text-gray-900 text-sm rounded-lg  focus:border-blue-500 block p-2.5`}
         type="text"
       />
       <input
@@ -43,7 +55,13 @@ const Inputs = () => {
             : inp2.current.focus()
         }
         pattern="[0-9]"
-        className={`w-[35px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:${color} focus:border-blue-500 block p-2.5`}
+        className={`w-[35px] bg-gray-50 border border-${
+          keyword === "1234"
+            ? "green-200"
+            : keyword.length === 4 && !"1234"
+            ? "bg-red-700"
+            : "grey-500"
+        } text-gray-900 text-sm rounded-lg  focus:border-blue-500 block p-2.5`}
         type="text"
       />
       <input
@@ -52,13 +70,16 @@ const Inputs = () => {
         pattern="[0-9]"
         onChange={(e) =>
           e.target.value.length > 0
-            ? (inp4.current.focus(),
-              setKeyword(keyword + e.target.value),
-              setColor("green-200"),
-              console.log(color))
+            ? (inp4.current.focus(), setKeyword(keyword + e.target.value))
             : (inp3.current.focus(), setKeyword(keyword.slice(0, 3)))
         }
-        className={`w-[35px] bg-gray-50 border border-${color} text-gray-900 text-sm rounded-lg  focus:border-blue-500 block p-2.5`}
+        className={`w-[35px] bg-gray-50 border border-${
+          keyword === "1234"
+            ? "green-200"
+            : keyword.length === 4 && !"1234"
+            ? "bg-red-700"
+            : "grey-500"
+        } text-gray-900 text-sm rounded-lg  focus:border-blue-500 block p-2.5`}
         type="text"
       />
     </div>

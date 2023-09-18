@@ -8,7 +8,7 @@ const ProductsContextWrapper = ({ children }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [keyword, setKeyword] = useState("");
-  const [color, setColor] = useState("grey-500");
+
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -22,9 +22,7 @@ const ProductsContextWrapper = ({ children }) => {
       });
   }, []);
   return (
-    <ProductsContext.Provider
-      value={{ isLoading, data, keyword, setKeyword, color, setColor }}
-    >
+    <ProductsContext.Provider value={{ isLoading, data, keyword, setKeyword }}>
       {children}
     </ProductsContext.Provider>
   );
